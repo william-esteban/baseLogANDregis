@@ -11,7 +11,7 @@ const auth = require('../middleware/auth')
 
 // definicion de rutas y asignacion a funciones del controlador.
 
-router.get('api/v1/users', auth.authenticate(), userController.getAllUsers);
+router.get('/api/v1/users', auth.authenticate(), userController.getAllUsers);
 router.get('/api/v1/users/nombre/:name', userController.getUserByName);
 router.get('/api/v1/users/id/:id', userController.getUserById);
 router.post('/api/v1/users1', userController.createUser);

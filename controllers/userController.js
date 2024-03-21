@@ -102,11 +102,11 @@ deleteUser: async (req, res) => {
 register: async (req, res) => {
     try {
         const users = await User.find();
-        const {nombre, email, password} = req.body;
+        const {name, email, password} = req.body;
         
         const userData = {
             userid: users.length + 1,
-            name: nombre,
+            name: name,
             email: email,
             password: await bcrypt.hash(password, 10)
         }
@@ -139,7 +139,7 @@ login: async (req, res) => {
             expiresIn: '1h'
         })
 
-        res.json({message: 'logged in successfully', token})
+        res.json({message: 'logged in successfully', token})  
        
         
     } catch (error) {
