@@ -13,8 +13,8 @@ const auth = require('../middleware/auth')
 
 router.get('api/v1/users', auth.authenticate(), userController.getAllUsers);
 router.get('/api/v1/users/nombre/:name', userController.getUserByName);
-router.get('/api/v1/users/id/:id', userController.getuserById);
-router.post('/api/v1/users', userController.createUser);
+router.get('/api/v1/users/id/:id', userController.getUserById);
+router.post('/api/v1/users1', userController.createUser);
 router.patch('/api/v1/users/update/:name', userController.updateUser);
 router.delete('/api/v1/users/delete/:name', userController.deleteUser)
 router.post('/register', userController.register);

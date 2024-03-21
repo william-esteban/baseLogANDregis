@@ -4,7 +4,7 @@ let User;
 const connectDatabase = async () => {
     try {
         if(!User){
-            User = mongoose.model('User', require('../models/').Schema);
+            User = mongoose.model('User', require('../models/userModel').Schema);
         }
 
         await mongoose.connect('mongodb+srv://william271629:3218741020@clusternotasdb.6dhty9c.mongodb.net/')

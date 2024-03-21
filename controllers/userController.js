@@ -40,7 +40,7 @@ getUserById: async (req, res) => {
 
 // buscar por el nombre. get
 
-getUserByNmane: async (req, res) => {
+getUserByName: async (req, res) => {
     try {
         const { name } = req.params;
         const byname = await User.findOne({ name: name});
@@ -124,19 +124,23 @@ register: async (req, res) => {
 login: async (req, res) => {
     try {
         const {email, password} = req.body;
-        const user = await User.findOne({email: email});
+        const user = await User.find({email: email});
 
         if (!user) {
             return res.status(401).json({ message: 'invalid username or password' });
         }
-        const validPassword = await bcrypt.compare(password, user[0].password);
+        const isPasswordValid = await bcrypt.compare(password, user[0].password);
 
-         if (!validPassword) {
-             res.status(401).json({ message: 'invalid username or password' });
+         if (!isPasswordValid) {
+            return res.status(401).json({ message: 'invalid username or password' });
          }
 
-        const token = jwt.sign({userid: user.id}, jwt_secret);
-        expiresIn: '1h';
+        const token = jwt.sign({userid: user.id}, jwt_secret,{
+            expiresIn: '1h'
+        })
+
+        res.json({message: 'logged in successfully', token})
+       
         
     } catch (error) {
         console.error('Error al crear los usuarios', error);
@@ -146,3 +150,6 @@ login: async (req, res) => {
 }
 
 }
+
+
+module.exports = userController
