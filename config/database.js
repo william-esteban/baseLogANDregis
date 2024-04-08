@@ -7,11 +7,13 @@ const connectDatabase = async () => {
             User = mongoose.model('User', require('../models/userModel').Schema);
         }
 
-        await mongoose.connect('mongodb+srv://william271629:3218741020@clusternotasdb.6dhty9c.mongodb.net/')
+        // compass anterior : mongodb+srv://william271629:3218741020@clusternotasdb.6dhty9c.mongodb.net/
+
+        await mongoose.connect('mongodb+srv://william271629:3233933777@registerandlogin.1jgszwb.mongodb.net/')
         .then(() => console.log('MongoDB connected'))
         .catch((err) => console.log(err));
 
-        await iniciarData();
+        // await iniciarData();
         
     } catch (error) {
         console.error('failed to connect to MongoDB', error);
@@ -21,31 +23,31 @@ const connectDatabase = async () => {
 
 };
 
- const iniciarData = async () => {
-     try {
-//         await User.insertMany([
-//             {
-//                 nombre: 'To Kill a Mockingbird',
-//                 genero: 'ficcion',
-//                 NumRef: 1123
-//             },
-//             {
-//                 nombre: 'hello world',
-//                 genero: 'terror',
-//                 NumRef: 113454
-//             }
+//  const iniciarData = async () => {
+//      try {
+// //         await User.insertMany([
+// //             {
+// //                 nombre: 'To Kill a Mockingbird',
+// //                 genero: 'ficcion',
+// //                 NumRef: 1123
+// //             },
+// //             {
+// //                 nombre: 'hello world',
+// //                 genero: 'terror',
+// //                 NumRef: 113454
+// //             }
 
-//         ]);
+// //         ]);
 
-//         await User.insertMany()
-            console.log('Data duccessfully initialized');
+// //         await User.insertMany()
+//             console.log('Data duccessfully initialized');
         
         
-    } catch (error) {
-        console.error('Error al crear los usuarios', error);
-        process.exit(1);
+//     } catch (error) {
+//         console.error('Error al crear los usuarios', error);
+//         process.exit(1);
         
-    }
-};
+//     }
+// };
 
 module.exports = connectDatabase;

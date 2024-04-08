@@ -8,8 +8,8 @@ const strategy = new Strategy(
     {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         secretOrKey: jwt_secret
-
     },
+
     async (jwtPayload, done) => {
         try {
             const user = await User.findById({userid: jwtPayload.id})
@@ -20,10 +20,8 @@ const strategy = new Strategy(
             done(null, user);
             
         } catch (error) {
-            done(error);
-            
+            done(error);     
         }
-
     }
 );
 
